@@ -1,10 +1,9 @@
-package de.rhm.github.api
+package de.rhm.gitbrowse.api.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import de.rhm.gitbrowse.api.model.Repository
 
 @JsonClass(generateAdapter = true)
-class SearchRepositories(
+class SearchRepositoriesResponse(
         @Json(name = "items") val repositories: List<Repository> = emptyList()
 )
