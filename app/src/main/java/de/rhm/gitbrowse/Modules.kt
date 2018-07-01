@@ -19,4 +19,6 @@ val AppModule = applicationContext {
                 .build().create(GithubService::class.java)
     }
 
+    factory { BrowseViewModel(get()) }
+
 }
