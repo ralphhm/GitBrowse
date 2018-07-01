@@ -2,6 +2,7 @@ package de.rhm.gitbrowse
 
 import com.squareup.moshi.Moshi
 import de.rhm.gitbrowse.api.GithubService
+import org.koin.android.architecture.ext.viewModel
 import org.koin.dsl.module.applicationContext
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -19,6 +20,6 @@ val AppModule = applicationContext {
                 .build().create(GithubService::class.java)
     }
 
-    factory { BrowseViewModel(get()) }
+    viewModel { BrowseViewModel(get()) }
 
 }

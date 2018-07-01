@@ -9,12 +9,12 @@ import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import de.rhm.gitbrowse.api.RepositoryItem
 import kotlinx.android.synthetic.main.activity_browse.*
 import kotlinx.android.synthetic.main.content_browse.*
-import org.koin.android.ext.android.inject
+import org.koin.android.architecture.ext.viewModel
 
 class BrowseActivity : AppCompatActivity() {
 
     private val section = Section()
-    private val viewModel by inject<BrowseViewModel>()
+    private val viewModel by viewModel<BrowseViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
