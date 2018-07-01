@@ -12,7 +12,7 @@ class RepositoryItem(val repository: Repository) : Item() {
         repo_name.text = repository.name
         repo_description.text = repository.description
         forks.text = "${repository.forkCount}"
-        //TODO load avatar image
+        owner_image.setImageURI(repository.owner.avatarUrl)
     }
 
     override fun getLayout() = R.layout.item_repository
