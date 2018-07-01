@@ -4,17 +4,25 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import de.rhm.gitbrowse.api.GithubService
-import de.rhm.gitbrowse.api.model.Repository
 
 class BrowseViewModel(private val service: GithubService) : ViewModel() {
 
-    private val result = MutableLiveData<List<Repository>>()
-    val repositories: LiveData<List<Repository>> get() = result
+    private val result = MutableLiveData<BrowseUiState>()
+    val repositories: LiveData<BrowseUiState> get() = result
 
     init {
         Thread {
-            result.postValue(service.getTrendingAndroidRepositories().execute().body()?.repositories
-                    ?: emptyList())
+            result.postValue(BrowseUiState.Loading)
+            try {
+                val response = service.getTrendingAndroidRepositories().execute()
+                when (response.isSuccessful) {
+                    true -> BrowseUiState.Success(response.body()!!.repositories)
+                    false -> BrowseUiState.Failure(response.message())
+                }.let { result.postValue(it) }
+            } catch (e: Exception) {
+                result.postValue(BrowseUiState.Failure(e.message))
+            }
+
         }.start()
     }
 
