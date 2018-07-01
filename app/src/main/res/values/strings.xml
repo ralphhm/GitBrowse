@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">GitBrowse</string>
+    <string name="loading_repositories">Loading repositories…</string>
+</resources>
