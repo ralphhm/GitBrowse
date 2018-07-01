@@ -1,8 +1,13 @@
 package de.rhm.gitbrowse.api.model
 
 import com.squareup.moshi.Moshi
+import de.rhm.gitbrowse.AppModule
 import junit.framework.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
+import org.koin.standalone.StandAloneContext.startKoin
+import org.koin.standalone.inject
+import org.koin.test.AutoCloseKoinTest
 
 private const val JSON_RESPONSE = """
 {
@@ -107,10 +112,17 @@ private const val JSON_RESPONSE = """
 }
 """
 
-class RepositoryTest {
+class RepositoryTest : AutoCloseKoinTest() {
+
+    val moshi: Moshi by inject()
+
+    @Before
+    fun before() {
+        startKoin(listOf(AppModule))
+    }
 
     @Test
-    fun parse() = Moshi.Builder().build().adapter(Repository::class.java).fromJson(JSON_RESPONSE)!!.run {
+    fun parse() = moshi.adapter(Repository::class.java).fromJson(JSON_RESPONSE)!!.run {
         assertEquals(93152223, id)
         assertEquals("SmartRefreshLayout", name)
         assertEquals("🔥下拉刷新、上拉加载、二级刷新、淘宝二楼、RefreshLayout、OverScroll，Android智能下拉刷新框架，支持越界回弹、越界拖动，具有极强的扩展性，集成了几十种炫酷的Header和 Footer。", description)

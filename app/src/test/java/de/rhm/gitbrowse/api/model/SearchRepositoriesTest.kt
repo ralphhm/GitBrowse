@@ -1,9 +1,14 @@
 package de.rhm.gitbrowse.api.model
 
 import com.squareup.moshi.Moshi
+import de.rhm.gitbrowse.AppModule
 import de.rhm.github.api.SearchRepositories
 import junit.framework.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
+import org.koin.standalone.StandAloneContext
+import org.koin.standalone.inject
+import org.koin.test.AutoCloseKoinTest
 
 private const val JSON_RESPONSE = """
 {
@@ -509,11 +514,17 @@ private const val JSON_RESPONSE = """
 """
 
 
+class SearchRepositoriesTest : AutoCloseKoinTest() {
 
-class SearchRepositoriesTest {
+    val moshi: Moshi by inject()
+
+    @Before
+    fun before() {
+        StandAloneContext.startKoin(listOf(AppModule))
+    }
 
     @Test
-    fun parse() = Moshi.Builder().build().adapter(SearchRepositories::class.java).fromJson(JSON_RESPONSE)!!.run {
+    fun parse() = moshi.adapter(SearchRepositories::class.java).fromJson(JSON_RESPONSE)!!.run {
         assertEquals(5, repositories.size)
     }
 }
