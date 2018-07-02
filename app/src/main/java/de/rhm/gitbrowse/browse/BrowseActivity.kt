@@ -26,7 +26,7 @@ class BrowseActivity : AppCompatActivity() {
 
     private fun bind(state: BrowseUiState) = when (state) {
         BrowseUiState.Loading -> section.update(listOf(LoadingItem))
-        is BrowseUiState.Failure -> section.update(listOf(ErrorItem(state.reason)))
+        is BrowseUiState.Failure -> section.update(listOf(ErrorItem(state)))
         is BrowseUiState.Success -> section.update(state.repositories.map { RepositoryItem(it) })
     }
 

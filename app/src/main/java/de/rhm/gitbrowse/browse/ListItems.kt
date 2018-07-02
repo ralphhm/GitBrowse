@@ -24,10 +24,11 @@ class RepositoryItem(val repository: Repository) : Item() {
     override fun getLayout() = R.layout.item_repository
 }
 
-class ErrorItem(val cause: String?) : Item() {
+class ErrorItem(val state: BrowseUiState.Failure) : Item() {
 
     override fun bind(viewHolder: ViewHolder, position: Int) = with(viewHolder) {
-        error_info.text = itemView.resources.getString(R.string.error_loading_repos, cause)
+        error_info.text = itemView.resources.getString(R.string.error_loading_repos, state.reason)
+        action_retry.setOnClickListener { state.retryAction.invoke() }
     }
 
     override fun getLayout() = R.layout.item_error
