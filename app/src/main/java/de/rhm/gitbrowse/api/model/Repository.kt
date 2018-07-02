@@ -10,7 +10,9 @@ class Repository(
         @Json(name = "name") val name: String,
         @Json(name = "description") val description: String,
         @Json(name = "owner") val owner: Owner,
-        @Json(name = "forks_count") val forkCount: Int
+        @Json(name = "forks_count") val forkCount: Int,
+        @Json(name = "full_name") val fullName: String,
+        @Json(name = "watchers_count") val subscribersCount: Int
 ) {
     @JsonClass(generateAdapter = true)
     class Owner(

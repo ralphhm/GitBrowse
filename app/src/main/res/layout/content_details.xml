@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".details.DetailsActivity"
+    tools:showIn="@layout/activity_details">
+
+    <include
+        android:id="@+id/error_state"
+        layout="@layout/item_error"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/loading_state"
+        layout="@layout/item_loading"
+        android:visibility="gone" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="true"
+        android:paddingTop="8dp">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/item_start_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="?listPreferredItemPaddingLeft" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/item_end_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="?listPreferredItemPaddingRight" />
+
+        <TextView
+            android:id="@+id/subscribers"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_remove_red_eye_black_16dp"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="@id/item_end_padding"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="32000" />
+
+        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="8dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:context=".browse.BrowseActivity"
+            tools:listitem="@layout/item_subscriber"
+            tools:showIn="@layout/activity_browse" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

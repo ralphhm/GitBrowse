@@ -3,6 +3,7 @@ package de.rhm.gitbrowse
 import com.squareup.moshi.Moshi
 import de.rhm.gitbrowse.api.GithubService
 import de.rhm.gitbrowse.browse.BrowseViewModel
+import de.rhm.gitbrowse.details.DetailsViewModel
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.architecture.ext.viewModel
 import org.koin.dsl.module.applicationContext
@@ -25,5 +26,7 @@ val AppModule = applicationContext {
     }
 
     viewModel { BrowseViewModel(get()) }
+
+    viewModel { DetailsViewModel(get()) }
 
 }
