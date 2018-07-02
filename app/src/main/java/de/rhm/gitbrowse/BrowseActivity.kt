@@ -20,7 +20,7 @@ class BrowseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_browse)
         setSupportActionBar(toolbar)
         content.adapter = GroupAdapter<ViewHolder>().apply { add(section) }
-        viewModel.repositories.observe(this, Observer { bind(it!!) })
+        viewModel.uiState.observe(this, Observer { bind(it!!) })
     }
 
     private fun bind(state: BrowseUiState) = when (state) {
