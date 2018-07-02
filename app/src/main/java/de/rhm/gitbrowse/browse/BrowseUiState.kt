@@ -1,4 +1,4 @@
-package de.rhm.gitbrowse
+package de.rhm.gitbrowse.browse
 
 import de.rhm.gitbrowse.api.model.Repository
 

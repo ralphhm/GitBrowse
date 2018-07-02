@@ -1,7 +1,8 @@
-package de.rhm.gitbrowse
+package de.rhm.gitbrowse.browse
 
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
+import de.rhm.gitbrowse.R
 import de.rhm.gitbrowse.api.model.Repository
 import kotlinx.android.synthetic.main.item_error.*
 import kotlinx.android.synthetic.main.item_repository.*

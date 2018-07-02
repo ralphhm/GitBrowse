@@ -2,6 +2,7 @@ package de.rhm.gitbrowse
 
 import com.squareup.moshi.Moshi
 import de.rhm.gitbrowse.api.GithubService
+import de.rhm.gitbrowse.browse.BrowseViewModel
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.architecture.ext.viewModel
 import org.koin.dsl.module.applicationContext
